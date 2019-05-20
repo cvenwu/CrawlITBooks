@@ -1,9 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+from selenium import webdriver
+import model
 
 URL = "https://sobooks.cc"
 VERIFY_KEY = '2019777'
+
 
 def convert_to_beautifulsoup(data):
     """
@@ -99,7 +102,7 @@ def has_next_page(url, data):
 
 def get_url_books_name(url, data):
     """
-      判断url对应的页面是否有 下一页
+      判断书籍列表中url对应的页面的书名组成的列表
       :param url: 网页的url地址
       :param data: url对应的网页内容
       :return: 返回url对应网址的书籍名称组成的列表
@@ -110,27 +113,6 @@ def get_url_books_name(url, data):
         book_name = book.select('a')[0].get('title')
         books_name.append(book_name)
     return books_name
-
-
-def analy_url_page(url):
-    """
-    分析url对应的网址，包括如下几个方面
-    1. 提取当前url所有书籍的链接
-    2. 判断当前url是否有下一页，如果有重复上面步骤，
-                            如果没有，继续从新的分类开始爬取，
-                                    如果新的分类已经爬取完成，则爬取完成
-    :param url: 网页的url地址
-    :return: None
-    """
-    while url:
-        url_html_content = get_url_content(url)
-        url_links_page = get_url_book(url, url_html_content)
-        url_next_page = has_next_page(url, url_html_content)
-        books_name = get_url_books_name(url, url_html_content)
-        print(has_next_page(url, url_html_content))
-        print(url_links_page)
-        print(books_name)
-        url = url_next_page
 
 
 def get_book_baidu_neturl(url):
@@ -156,19 +138,72 @@ def get_book_baidu_password(url):
     获取对应url链接存储的书籍百度网盘的提取密码
     :param url: 要获取提取密码的url链接所对应的书籍
     :return: 如果存在返回提取密码
-             否则返回False
+             否则返回None
     """
-    """
-    @TODO 1. 尝试使用爬虫的方式获取提交的页面来获得百度网盘提取码
-          2. 如果不可以的话，就使用selenium模拟浏览器来爬取内容吧
-    """
-    pass
+    # @TODO 1. 尝试使用爬虫的方式获取提交的页面来获得百度网盘提取码
+    # @TODO 2. 如果不可以的话，就使用selenium模拟浏览器来爬取内容吧
+    browser = webdriver.Chrome()
+    browser.get(url)
+    try:
+        browser.find_element_by_class_name('euc-y-s')
+        secret_key = browser.find_element_by_class_name('euc-y-i')
+        secret_key.send_keys(VERIFY_KEY)
+        browser.find_element_by_class_name('euc-y-s').click()
+    except Exception as e:
+        browser.close()
+    password = str(browser.find_element_by_class_name('e-secret').text)
+    if password:
+        return password[-4:]
+    else:
+        return None
 
 
+def get_book_author(url, data):
+    """
+    获得url对应的书籍列表页面中的作者列表
+    :param url: 对应书籍列表页面的url
+    :param data: 对应书籍列表页面的html内容
+    :return: 返回url对应的作者列表
+    """
+    book_authors = []
+    bs = convert_to_beautifulsoup(data)
+    for book_author in bs.select('div > p > a'):
+        book_authors.append(book_author.text)
+    return book_authors
+
+
+def analy_url_page(url):
+    """
+    分析url对应的网址，包括如下几个方面
+    1. 提取当前url所有书籍的链接
+    2. 判断当前url是否有下一页，如果有, 继续步骤3
+                            如果没有，继续从新的分类开始爬取，
+                                    如果新的分类已经爬取完成，则爬取完成
+    3. 获取当前页面所有书籍，并依次为每个书籍创建对象(进行初始化，爬取书籍的名称、作者名、书籍详情页、书籍百度网盘地址、书籍百度网盘提取码)
+    4. 继续步骤2
+    :param url: 网页的url地址
+    :return: None
+    """
+    while url:
+        data = get_url_content(url)
+        url_links_page = get_url_book(url, data)
+        url_next_page = has_next_page(url, data)
+        books_name = get_url_books_name(url, data)
+        for i in range(len(books_name)):
+            book_name = books_name[i]
+            book_author = get_book_author(url, data)[i]
+            book_info_url = url_links_page[i]
+            book_baidu_url = get_book_baidu_neturl(url_links_page[i])
+            book_baidu_password = get_book_baidu_password(url_links_page[i])
+            book = model.Book(book_name, book_info_url, book_author, book_baidu_url, book_baidu_password)
+            print(book)
+        if url_next_page:
+            url = url_next_page
+        else:
+            break
 
 
 if __name__ == '__main__':
-    # print(get_url_book("https://sobooks.cc/lishizhuanji"))
-    # analy_url_page("https://sobooks.cc/lishizhuanji")
-
-    get_book_baidu_neturl('https://sobooks.cc/books/12159.html')
+    root_url = URL
+    for url in get_category_link(root_url):
+        analy_url_page(url)
