@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="765c4cf1-9aa9-486d-bc43-0d803ac037d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Python爬取SoBooks/tool/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python爬取SoBooks/tool/crawl_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python爬取SoBooks/tool/crawl_tool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/selenium_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/selenium_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="765c4cf1-9aa9-486d-bc43-0d803ac037d0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Python爬取SoBooks/tool/crawl_tool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
+            <state relative-caret-position="322">
+              <caret line="208" column="19" lean-forward="true" selection-start-line="208" selection-start-column="19" selection-end-line="208" selection-end-column="19" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -320,7 +315,7 @@
       <workItem from="1558311513455" duration="25000" />
       <workItem from="1558312974429" duration="5114000" />
       <workItem from="1558324391292" duration="10124000" />
-      <workItem from="1558344260301" duration="7323000" />
+      <workItem from="1558344260301" duration="8126000" />
     </task>
     <task id="LOCAL-00001" summary="Python爬取ItBooks电子书籍网站">
       <created>1558240381371</created>
@@ -356,7 +351,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29586000" />
+    <option name="totallyTimeSpent" value="30389000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -369,14 +364,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1738661" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.72138226" visible="true" weight="0.40685713" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.72138226" weight="0.40685713" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -385,7 +379,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.34742856" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.2786177" side_tool="true" weight="0.392" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3097143" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3097143" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -529,8 +523,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Python爬取SoBooks/tool/crawl_tool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
+        <state relative-caret-position="322">
+          <caret line="208" column="19" lean-forward="true" selection-start-line="208" selection-start-column="19" selection-end-line="208" selection-end-column="19" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

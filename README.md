@@ -5,7 +5,10 @@
 
 ## 已经爬取的网站
 [Itbook 书籍免费下载](https://itbook.download/)
-[SoBooks](https://sobooks.cc/)
+
+<br />
+
+[SoBooks](https://sobooks.cc/) [项目说明](<https://github.com/sivanWu0222/GetLinksFromSoBooks>)
 
 
 
